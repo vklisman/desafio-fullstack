@@ -4,6 +4,10 @@ form {
     gap: 10px;
     max-width: 300px;
     margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
 input,
@@ -27,12 +31,32 @@ button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin: 20px auto;
+    table-layout: auto;
+    /* Permite que as colunas se ajustem dinamicamente */
 }
 
 th,
 td {
     padding: 10px;
-    text-align: left;
+    border: 1px solid black;
+    text-align: center;
+    /* Centraliza os valores */
+    word-wrap: break-word;
+    /* Garante que o texto seja quebrado se for muito longo */
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
 }
 
 @media (max-width: 600px) {
