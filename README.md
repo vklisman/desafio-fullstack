@@ -208,9 +208,3 @@ tempo real.
     - Cores alternadas nas linhas e efeito de hover.
   - Adicionada borda ao formulário e à tabela para melhor organização visual.
 - [x] Validação para garantir que os valores são numéricos no frontend e backend.
-
----
-
-## Autor
-
-Desenvolvido por **Victor Klisman** como parte de um desafio técnico. 😊
