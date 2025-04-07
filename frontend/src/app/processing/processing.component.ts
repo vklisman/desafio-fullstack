@@ -15,14 +15,17 @@ export class ProcessingComponent {
   num2: number = 0;
   num3: number = 0;
   processamentos: any[] = [];
+  errorMessage: string = ''; // Variável para armazenar a mensagem de erro
 
   constructor(private http: HttpClient) { }
 
   enviarNumeros() {
     if (isNaN(this.num1) || isNaN(this.num2) || isNaN(this.num3)) {
-      alert('Todos os valores devem ser números válidos.');
+      this.errorMessage = 'Todos os valores devem ser números válidos.';
       return;
     }
+
+    this.errorMessage = ''; // Limpa a mensagem de erro se os valores forem válidos
 
     this.http.post<any>('http://localhost:8000/api/processar/', {
       num1: this.num1,

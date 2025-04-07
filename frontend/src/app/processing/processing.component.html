@@ -1,5 +1,10 @@
 <h2>Processar Números</h2>
 
+<!-- Exibe a mensagem de erro, se existir -->
+<div *ngIf="errorMessage" style="color: red; margin-bottom: 10px;">
+    {{ errorMessage }}
+</div>
+
 <form (ngSubmit)="enviarNumeros()">
     <input type="number" [(ngModel)]="num1" name="num1" placeholder="Número 1" required>
     <input type="number" [(ngModel)]="num2" name="num2" placeholder="Número 2" required>
