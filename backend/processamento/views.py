@@ -6,11 +6,19 @@ from .worker.tasks import processar_numeros
 
 @api_view(['POST'])
 def processar(request):
-    obj = Processamento.objects.create(
-        num1=float(request.data['num1']),  # Convertendo para float
-        num2=float(request.data['num2']),
-        num3=float(request.data['num3'])
-    )
+    try:
+        # Validação para garantir que os valores são numéricos
+        num1 = float(request.data.get('num1'))
+        num2 = float(request.data.get('num2'))
+        num3 = float(request.data.get('num3'))
+    except (ValueError, TypeError):
+        return Response(
+            {'error': 'Todos os valores devem ser números válidos.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    # Criação do objeto e envio para processamento
+    obj = Processamento.objects.create(num1=num1, num2=num2, num3=num3)
     processar_numeros.delay(obj.id)
     return Response({'id': obj.id, 'status': 'Processando'})
 

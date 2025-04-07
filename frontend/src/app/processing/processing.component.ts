@@ -19,6 +19,11 @@ export class ProcessingComponent {
   constructor(private http: HttpClient) { }
 
   enviarNumeros() {
+    if (isNaN(this.num1) || isNaN(this.num2) || isNaN(this.num3)) {
+      alert('Todos os valores devem ser números válidos.');
+      return;
+    }
+
     this.http.post<any>('http://localhost:8000/api/processar/', {
       num1: this.num1,
       num2: this.num2,
