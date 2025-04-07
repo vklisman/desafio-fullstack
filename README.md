@@ -196,9 +196,9 @@ docker-compose exec backend python manage.py migrate
 
 ## Melhorias Futuras
 
-- Atualização automática no frontend via Polling/WebSockets para exibir status em
+- [ ] Atualização automática no frontend via Polling/WebSockets para exibir status em
 tempo real.
-- Testes unitários no backend (Pytest/Django TestCase).​
+- [ ] Testes unitários no backend (Pytest/Django TestCase).​
 - [x] Melhorias na interface (UI/UX).​
   - Implementado layout responsivo com divisão entre campos de entrada e resultados.
   - Adicionado estilo de card com efeito de blur para os campos de entrada.

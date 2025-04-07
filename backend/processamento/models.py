@@ -1,5 +1,6 @@
 from django.db import models
 
+# Modelo para armazenar os números enviados, resultados (média e mediana) e status do processamento.
 class Processamento(models.Model):
     num1 = models.FloatField()
     num2 = models.FloatField()

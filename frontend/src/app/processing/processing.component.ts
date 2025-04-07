@@ -20,7 +20,7 @@ export class ProcessingComponent {
 
   constructor(private http: HttpClient) { }
 
-
+  // Envia os números para o backend e inicia o polling para verificar o status do processamento.
   enviarNumeros() {
     if (isNaN(this.num1) || isNaN(this.num2) || isNaN(this.num3)) {
       this.errorMessage = 'Todos os valores devem ser números válidos.';

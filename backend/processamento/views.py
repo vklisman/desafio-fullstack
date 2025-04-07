@@ -4,6 +4,7 @@ from .models import Processamento
 from .serializers import ProcessamentoSerializer
 from .worker.tasks import processar_numeros
 
+# View para processar números enviados pelo frontend.
 @api_view(['POST'])
 def processar(request):
     try:
@@ -22,6 +23,7 @@ def processar(request):
     processar_numeros.delay(obj.id)
     return Response({'id': obj.id, 'status': 'Processando'})
 
+# Valida os dados, cria um objeto no banco e dispara uma tarefa assíncrona no Celery.
 @api_view(['GET'])
 def status(request, id):
     try:
