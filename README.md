@@ -192,12 +192,6 @@ Certifique-se de que as migrações foram aplicadas:
 docker-compose exec backend python manage.py migrate
 ```
 
-### 3. Celery Não Processa Tarefas
-Verifique os logs do worker:
-```bash
-docker-compose logs worker
-```
-
 ---
 
 ## Melhorias Futuras
