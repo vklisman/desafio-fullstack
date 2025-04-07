@@ -16,8 +16,10 @@ export class ProcessingComponent {
   num3: number = 0;
   processamentos: any[] = [];
   errorMessage: string = ''; // Variável para armazenar a mensagem de erro
+  successMessage: string = '';
 
   constructor(private http: HttpClient) { }
+
 
   enviarNumeros() {
     if (isNaN(this.num1) || isNaN(this.num2) || isNaN(this.num3)) {
@@ -31,27 +33,35 @@ export class ProcessingComponent {
       num1: this.num1,
       num2: this.num2,
       num3: this.num3
-    }).subscribe(res => {
-      const id = res.id;
-      const item: any = {
-        id: id,
-        num1: this.num1,
-        num2: this.num2,
-        num3: this.num3,
-        status: 'Processando...'
-      };
-      this.processamentos.push(item);
+    }).subscribe(
+      res => {
+        this.successMessage = 'Números enviados com sucesso!';
+        setTimeout(() => this.successMessage = '', 3000);
+        const id = res.id;
+        const item: any = {
+          id: id,
+          num1: this.num1,
+          num2: this.num2,
+          num3: this.num3,
+          status: 'Processando...'
+        };
+        this.processamentos.push(item);
 
-      const interval = setInterval(() => {
-        this.http.get<any>(`http://localhost:8000/api/status/${id}/`).subscribe(r => {
-          if (r.status === 'Concluído') {
-            clearInterval(interval);
-            item.status = 'Concluído';
-            item.media = r.media;
-            item.mediana = r.mediana;
-          }
-        });
-      }, 2000);
-    });
+        const interval = setInterval(() => {
+          this.errorMessage = 'Erro ao processar os números.';
+          this.http.get<any>(`http://localhost:8000/api/status/${id}/`).subscribe(r => {
+            if (r.status === 'Concluído') {
+              clearInterval(interval);
+              item.status = 'Concluído';
+              item.media = r.media;
+              item.mediana = r.mediana;
+            }
+          });
+        }, 2000);
+      },
+      err => {
+        this.errorMessage = 'Erro ao processar os números.';
+      }
+    );
   }
 }

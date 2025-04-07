@@ -1,14 +1,14 @@
 <h2>Processar Números</h2>
 
-<!-- Exibe a mensagem de erro, se existir -->
-<div *ngIf="errorMessage" style="color: red; margin-bottom: 10px;">
-    {{ errorMessage }}
+
+<div *ngIf="successMessage" style="color: green; margin-bottom: 10px;">
+    {{ successMessage }}
 </div>
 
 <form (ngSubmit)="enviarNumeros()">
-    <input type="number" [(ngModel)]="num1" name="num1" placeholder="Número 1" required>
-    <input type="number" [(ngModel)]="num2" name="num2" placeholder="Número 2" required>
-    <input type="number" [(ngModel)]="num3" name="num3" placeholder="Número 3" required>
+    <input type="number" [(ngModel)]="num1" name="num1" placeholder="Número 1 (ex: 10)" required>
+    <input type="number" [(ngModel)]="num2" name="num2" placeholder="Número 2 (ex: 20)" required>
+    <input type="number" [(ngModel)]="num3" name="num3" placeholder="Número 3 (ex: 30)" required>
     <button type="submit">Calcular</button>
 </form>
 
@@ -33,7 +33,9 @@
             <td style="border: 1px solid black; padding: 5px;">{{ item.num1 }}</td>
             <td style="border: 1px solid black; padding: 5px;">{{ item.num2 }}</td>
             <td style="border: 1px solid black; padding: 5px;">{{ item.num3 }}</td>
-            <td style="border: 1px solid black; padding: 5px;">{{ item.status }}</td>
+            <td [ngStyle]="{'color': item.status === 'Concluído' ? 'green' : 'orange'}">
+                {{ item.status }}
+            </td>
             <td *ngIf="item.status === 'Concluído'" style="border: 1px solid black; padding: 5px;">{{ item.media }}</td>
             <td *ngIf="item.status === 'Concluído'" style="border: 1px solid black; padding: 5px;">{{ item.mediana }}
             </td>
